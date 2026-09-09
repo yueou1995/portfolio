@@ -57,10 +57,10 @@ const immersiveReaderUrl: WebUrl =
 
 export const portfolio: Portfolio = {
   name: "Yue Ou",
-  title: "Design Program Manager",
+  title: "Program Manager | Engineering background, design instincts",
   about: [
-    "I'm a program manager working in UX with a background in software engineering. I love making complicated things easier—for the people using a product and the teams building it.",
-    "I care about who gets left out of technology and what it takes to change that. Through my work on accessible AI experiences and co-design with people with disabilities, I bring overlooked needs into the decisions that shape what we build.",
+    "I care about what's worth building, and I love figuring out how to build it. My experience across software engineering, program management, and UX helps me connect what people need with what it takes to make it happen.",
+    "AI is changing what's possible. I help teams find focus, make decisions, and ship—even when the path forward isn't clear.",
   ],
   education: {
     degree: "B.Sc. in Computer Science",
@@ -120,8 +120,10 @@ export const portfolio: Portfolio = {
       href: "https://ui-traps.ou-yue.workers.dev/",
       description:
         "A satirical look at enterprise UX: nine design traps that make everyday tasks harder than they need to be.",
-      contribution:
-        "Vibe coded this personal project using GPT-5.6 Sol.",
+      contribution: [
+        { text: "Vibe coded this personal project", strong: true },
+        { text: " using GPT-5.6 Sol." },
+      ],
       thumbnail: {
         src: "/projects/ui-traps.jpg",
         alt: "UI Traps homepage with the headline No UI Tenets. All Traps.",
@@ -135,8 +137,10 @@ export const portfolio: Portfolio = {
       href: inclusiveDesignUrl,
       description:
         "A home for inclusive design principles, practical toolkits, and real-world examples, with guidance on cognition and neurodiversity.",
-      contribution:
-        "Led the site\u2019s launch and evolution, from research and design through implementation.",
+      contribution: [
+        { text: "Led the site\u2019s launch and evolution", strong: true },
+        { text: ", from research and design through implementation." },
+      ],
       thumbnail: {
         src: "/projects/inclusive-design.jpg",
         alt: "Microsoft Inclusive Design homepage with its illustrated header and design principles.",
@@ -150,8 +154,10 @@ export const portfolio: Portfolio = {
       href: "https://www.microsoft.com/en-us/garage/wall-of-fame/inclusive-design-for-cognition/",
       description:
         "A Microsoft Garage project using co-design to reduce cognitive barriers in digital experiences.",
-      contribution:
-        "Co-led the project. It won the 2022 Microsoft Global Hackathon and was inducted into the Microsoft Garage Wall of Fame.",
+      contribution: [
+        { text: "Co-led the project.", strong: true },
+        { text: " It won the 2022 Microsoft Global Hackathon and was inducted into the Microsoft Garage Wall of Fame." },
+      ],
       thumbnail: {
         src: "/projects/inclusive-design-for-cognition.jpg",
         alt: "Microsoft Garage Wall of Fame page for Inclusive Design for Cognition with an illustration of people collaborating.",
@@ -165,8 +171,10 @@ export const portfolio: Portfolio = {
       href: immersiveReaderUrl,
       description:
         "A reading tool that supports comprehension with read-aloud, translation, and personalized reading settings across Microsoft products.",
-      contribution:
-        "Built full-stack features and tooling for Immersive Reader.",
+      contribution: [
+        { text: "Built full-stack features and tooling", strong: true },
+        { text: " for Immersive Reader." },
+      ],
       thumbnail: {
         src: "/projects/immersive-reader.avif",
         alt: "Immersive Reader with syllable highlighting and a Picture Dictionary popup for the word valleys.",

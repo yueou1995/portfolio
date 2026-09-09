@@ -9,10 +9,13 @@ test.beforeEach(async ({ page }) => {
 test("keeps the single-column structure and contact links in the footer", async ({ page }) => {
   await expect(page.getByRole("main")).toHaveCount(1);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Yue Ou");
-  await expect(page.locator(".professional-title")).toHaveText("Design Program Manager");
-  await expect(page.locator(".introduction p")).toHaveText(["Design Program Manager"]);
-  await expect(page.getByRole("region", { name: "About", exact: true }))
-    .toContainText("I'm a program manager working in UX with a background in software engineering");
+  await expect(page.locator(".professional-title")).toHaveText("Program Manager | Engineering background, design instincts");
+  await expect(page.locator(".introduction p")).toHaveText(["Program Manager | Engineering background, design instincts"]);
+  await expect(page.getByRole("region", { name: "About", exact: true }).locator(".about-copy p"))
+    .toHaveText([
+      "I care about what's worth building, and I love figuring out how to build it. My experience across software engineering, program management, and UX helps me connect what people need with what it takes to make it happen.",
+      "AI is changing what's possible. I help teams find focus, make decisions, and ship\u2014even when the path forward isn't clear.",
+    ]);
   await expect(page.getByRole("main")).not.toContainText(/senior design program manager/i);
   await expect(page.getByRole("heading", { level: 2 })).toHaveText([
     "About", "Experience", "Featured Projects", "Education",
@@ -145,10 +148,10 @@ test("includes Inclusive Design for Cognition with its summary, contribution, an
   await expect(link).toHaveAttribute("target", "_blank");
   await expect(link).toHaveAttribute("rel", "noopener noreferrer");
   await expect(project.locator(".project-description, .project-contribution")).toHaveText([
-    "A Microsoft Garage project using co-design to reduce cognitive barriers in digital experiences.",
     "Co-led the project. It won the 2022 Microsoft Global Hackathon and was inducted into the Microsoft Garage Wall of Fame.",
+    "A Microsoft Garage project using co-design to reduce cognitive barriers in digital experiences.",
   ]);
-  await expect(project.locator("strong, b")).toHaveCount(0);
+  await expect(project.locator("strong")).toHaveText("Co-led the project.");
 });
 
 test("includes Microsoft Immersive Reader with its summary, contribution, and link", async ({ page }) => {
@@ -159,15 +162,38 @@ test("includes Microsoft Immersive Reader with its summary, contribution, and li
   await expect(link).toHaveAttribute("target", "_blank");
   await expect(link).toHaveAttribute("rel", "noopener noreferrer");
   await expect(project.locator(".project-description, .project-contribution")).toHaveText([
-    "A reading tool that supports comprehension with read-aloud, translation, and personalized reading settings across Microsoft products.",
     "Built full-stack features and tooling for Immersive Reader.",
+    "A reading tool that supports comprehension with read-aloud, translation, and personalized reading settings across Microsoft products.",
   ]);
-  await expect(project.locator("strong, b")).toHaveCount(0);
+  await expect(project.locator("strong")).toHaveText("Built full-stack features and tooling");
   await expect(project.getByRole("img")).toHaveAttribute("src", /immersive-reader\.avif/);
 });
 
+test("puts contributions before project summaries with focused emphasis", async ({ page }) => {
+  const projects = page.getByRole("region", { name: "Featured Projects", exact: true });
+  await expect(projects.locator("h3 + .project-contribution + .project-description"))
+    .toHaveCount(portfolio.projects.length);
+  await expect(projects.locator(".project-contribution strong")).toHaveText([
+    "Vibe coded this personal project",
+    "Led the site\u2019s launch and evolution",
+    "Co-led the project.",
+    "Built full-stack features and tooling",
+  ]);
+
+  for (const project of await projects.locator(".project-card").all()) {
+    const contribution = project.locator(".project-contribution");
+    const titleColor = await project.locator(".project-title")
+      .evaluate((element) => getComputedStyle(element).color);
+    await expect(contribution).toHaveCSS("font-size", "14px");
+    await expect(contribution).toHaveCSS("font-weight", "400");
+    await expect(contribution).toHaveCSS("color", titleColor);
+    await expect(contribution.locator("strong")).toHaveCSS("font-weight", "600");
+    await expect(project.locator(".project-description")).toHaveCSS("font-size", "14px");
+  }
+});
+
 test("keeps body copy free of unintended bold emphasis", async ({ page }) => {
-  const bodyCopy = page.locator(".about-copy, .experience-highlights, .project-description, .project-contribution");
+  const bodyCopy = page.locator(".about-copy, .experience-highlights, .project-description");
   await expect(bodyCopy).not.toHaveCount(0);
   await expect(bodyCopy.locator("strong, b")).toHaveCount(0);
   const emphasizedText = await bodyCopy.evaluateAll((blocks) => blocks
@@ -389,7 +415,7 @@ test.describe("without JavaScript", () => {
 
   test("keeps all content and links available", async ({ page }) => {
     await expect(page.getByRole("heading", { name: "Yue Ou", exact: true })).toBeVisible();
-    await expect(page.locator(".introduction p")).toHaveText(["Design Program Manager"]);
+    await expect(page.locator(".introduction p")).toHaveText(["Program Manager | Engineering background, design instincts"]);
     await expect(page.getByRole("heading", { level: 2 })).toHaveCount(4);
     await expect(page.locator("main a")).toHaveCount(6);
     await expect(page.locator(".experience-highlights a")).toHaveCount(2);

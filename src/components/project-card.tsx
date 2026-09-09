@@ -34,10 +34,10 @@ export function ProjectCard({ project }: { project: Project }) {
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
         </h3>
-        <p className="project-description">{project.description}</p>
         <p className="project-contribution">
           <InlineText content={project.contribution} />
         </p>
+        <p className="project-description">{project.description}</p>
         {project.technologies && project.technologies.length > 0 && (
           <p className="project-technologies">
             <span className="sr-only">Technologies: </span>

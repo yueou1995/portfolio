@@ -402,15 +402,19 @@ h1 {
 }
 
 .project-description {
+	margin-top: 8px;
 	font-size: 14px;
 	line-height: 1.8;
 }
 
 .project-contribution {
-	margin-top: 12px;
-	color: var(--text-muted);
-	font-size: 13px;
-	line-height: 1.85;
+	color: var(--text-primary);
+	font-size: 14px;
+	line-height: 1.8;
+}
+
+.project-contribution strong {
+	font-weight: 600;
 }
 
 .project-technologies {
