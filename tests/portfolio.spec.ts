@@ -9,12 +9,12 @@ test.beforeEach(async ({ page }) => {
 test("keeps the single-column structure and contact links in the footer", async ({ page }) => {
   await expect(page.getByRole("main")).toHaveCount(1);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Yue Ou");
-  await expect(page.locator(".professional-title")).toHaveText("Program Manager | Engineering background, design instincts");
-  await expect(page.locator(".introduction p")).toHaveText(["Program Manager | Engineering background, design instincts"]);
+  await expect(page.locator(".professional-title")).toHaveText("Program Manager | Technical depth, UX fluency");
+  await expect(page.locator(".introduction p")).toHaveText(["Program Manager | Technical depth, UX fluency"]);
   await expect(page.getByRole("region", { name: "About", exact: true }).locator(".about-copy p"))
     .toHaveText([
       "I care about what's worth building, and I love figuring out how to build it. My experience across software engineering, program management, and UX helps me connect what people need with what it takes to make it happen.",
-      "AI is changing what's possible. I help teams find focus, make decisions, and ship\u2014even when the path forward isn't clear.",
+      "AI is changing what's possible. I help teams find focus, make decisions, and ship, even when the path forward isn't clear.",
     ]);
   await expect(page.getByRole("main")).not.toContainText(/senior design program manager/i);
   await expect(page.getByRole("heading", { level: 2 })).toHaveText([
@@ -415,7 +415,7 @@ test.describe("without JavaScript", () => {
 
   test("keeps all content and links available", async ({ page }) => {
     await expect(page.getByRole("heading", { name: "Yue Ou", exact: true })).toBeVisible();
-    await expect(page.locator(".introduction p")).toHaveText(["Program Manager | Engineering background, design instincts"]);
+    await expect(page.locator(".introduction p")).toHaveText(["Program Manager | Technical depth, UX fluency"]);
     await expect(page.getByRole("heading", { level: 2 })).toHaveCount(4);
     await expect(page.locator("main a")).toHaveCount(6);
     await expect(page.locator(".experience-highlights a")).toHaveCount(2);

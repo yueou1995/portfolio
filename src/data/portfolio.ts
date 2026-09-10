@@ -57,10 +57,10 @@ const immersiveReaderUrl: WebUrl =
 
 export const portfolio: Portfolio = {
   name: "Yue Ou",
-  title: "Program Manager | Engineering background, design instincts",
+  title: "Program Manager | Technical depth, UX fluency",
   about: [
     "I care about what's worth building, and I love figuring out how to build it. My experience across software engineering, program management, and UX helps me connect what people need with what it takes to make it happen.",
-    "AI is changing what's possible. I help teams find focus, make decisions, and ship—even when the path forward isn't clear.",
+    "AI is changing what's possible. I help teams find focus, make decisions, and ship, even when the path forward isn't clear.",
   ],
   education: {
     degree: "B.Sc. in Computer Science",
