@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <title>Yue Ou</title>
+  <rect width="64" height="64" rx="12" fill="#100e17" />
+  <path d="M10 18 20 32 30 18M20 32v14" stroke="#b89aff" stroke-width="6" stroke-linecap="square" stroke-linejoin="round" />
+  <ellipse cx="46" cy="32" rx="9" ry="14" stroke="#b89aff" stroke-width="6" />
+</svg>
